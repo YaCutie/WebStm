@@ -1,0 +1,12 @@
+.login-form{
+  max-width: 250px;
+  margin: auto;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+}
+button{
+  max-width: 150px;
+  margin: auto;
+}
+

@@ -1,0 +1,32 @@
+<div class="grid-container">
+  <h1 class="mat-h1"></h1>
+  <mat-grid-list cols="3" rowHeight="700px">
+    <mat-grid-tile *ngFor="let card of pagedList" [colspan]="1" [rowspan]="1">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title class="cardTitleBlock">
+            <span class="cardTitle">{{card.surname}} {{card.name}} {{card.middlename}}</span>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content border">
+          <div class="imgdiv"><img src="{{card.photo}}"></div>
+          <div class="card-text-content">
+            <p>Специализация: {{card.specializationid.specializationname}}</p>
+            <p>Должность: {{card.postid.postName}}</p>
+            <p>Категория: {{card.category}}</p>
+            <button mat-button (click)="AllServices(card.id)">Посмотреть список услуг</button>
+          </div>
+          <div class="centerdiv">
+            <a mat-raised-button color="primary" class="more-button" [routerLink]="['/newapplication', {id: card.id}]">
+              Записаться на приём</a>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <mat-paginator class="pagination"
+                 [length]="cardLength"
+                 [pageSize]="3"
+                 (page)="onPageChange($event)">
+  </mat-paginator>
+</div>

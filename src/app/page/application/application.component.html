@@ -1,0 +1,87 @@
+<form  class="application-form mb20" >
+<!--  <div class="mt20 double">-->
+<!--    <div>-->
+<!--  <mat-form-field class="mr20" appearance="fill">-->
+<!--    <mat-label>Фамилия</mat-label>-->
+<!--    <input name="surename" [(ngModel)]="surname" type="text" matInput placeholder="Введите фамилию">-->
+<!--  </mat-form-field>-->
+
+<!--  <mat-form-field class="mr20" appearance="fill">-->
+<!--    <mat-label>Имя</mat-label>-->
+<!--    <input name="name" [(ngModel)]="name" type="text" matInput placeholder="Введите имя">-->
+<!--  </mat-form-field>-->
+
+<!--  <mat-form-field class="" appearance="fill">-->
+<!--    <mat-label>Отчество</mat-label>-->
+<!--    <input name="lastname" [(ngModel)]="middleName" type="text" matInput placeholder="Введите отчество">-->
+<!--  </mat-form-field>-->
+<!--    </div>-->
+<!--    <div>-->
+<!--      <mat-form-field class="mr20" appearance="fill">-->
+<!--        <mat-label>Фамилия</mat-label>-->
+<!--        <input name="surename" [(ngModel)]="surname" type="text" matInput placeholder="Введите фамилию">-->
+<!--      </mat-form-field>-->
+
+<!--      <mat-form-field class="mr20" appearance="fill">-->
+<!--        <mat-label>Имя</mat-label>-->
+<!--        <input name="name" [(ngModel)]="name" type="text" matInput placeholder="Введите имя">-->
+<!--      </mat-form-field>-->
+
+<!--      <mat-form-field class="" appearance="fill">-->
+<!--        <mat-label>Отчество</mat-label>-->
+<!--        <input name="lastname" [(ngModel)]="middleName" type="text" matInput placeholder="Введите отчество">-->
+<!--      </mat-form-field>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <button mat-raised-button color="primary" (click)="NewApp()">Отправить заявку</button>-->
+
+
+  <mat-stepper #stepper>
+    <mat-step [stepControl]="firstFormGroup" errorMessage="Name is required.">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Fill out your name</ng-template>
+        <mat-form-field class="mr20" appearance="fill">
+          <mat-label>Фамилия</mat-label>
+          <input name="surename" [(ngModel)]="surname" formControlName="firstCtrl" type="text" matInput placeholder="Введите фамилию">
+        </mat-form-field>
+
+        <mat-form-field class="mr20" appearance="fill">
+          <mat-label>Имя</mat-label>
+          <input name="name" [(ngModel)]="name" formControlName="firstCtrl" type="text" matInput placeholder="Введите имя">
+        </mat-form-field>
+
+        <mat-form-field class="" appearance="fill">
+          <mat-label>Отчество</mat-label>
+          <input name="lastname" [(ngModel)]="middleName" formControlName="firstCtrl" type="text" matInput placeholder="Введите отчество">
+        </mat-form-field>
+        <div>
+          <p>Go to a different step to see the error state</p>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup" errorMessage="Address is required.">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Fill out your address</ng-template>
+        <mat-form-field appearance="fill">
+          <mat-label>Address</mat-label>
+          <input matInput placeholder="Ex. 1 Main St, New York, NY" formControlName="secondCtrl"
+                 required>
+        </mat-form-field>
+        <div>
+          <p>Go to a different step to see the error state</p>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <p>You are now done.</p>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+  </mat-stepper>
+</form>

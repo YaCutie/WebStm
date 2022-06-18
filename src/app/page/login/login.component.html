@@ -1,0 +1,14 @@
+<form class="login-form mt20 mb20">
+  <mat-form-field class="mt300" appearance="fill">
+    <mat-label>Login</mat-label>
+    <input name="log" [(ngModel)]="login" type="text" matInput placeholder="Login">
+  </mat-form-field>
+
+  <mat-form-field class="" appearance="fill">
+    <mat-label>Password</mat-label>
+    <input name="pass" [(ngModel)]="password" type="password" matInput password placeholder="Password">
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" (click)="onLogin()">Войти</button>
+  <a mat-button routerLink="/registration">Нет аккаунта? Зарегистрируйтесь!</a>
+</form>

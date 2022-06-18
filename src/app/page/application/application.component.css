@@ -1,0 +1,15 @@
+.application-form{
+  max-width: 600px;
+  margin: auto;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+}
+button{
+  max-width: 150px;
+  margin: auto;
+}
+.double{
+  display: flex;
+  justify-content: space-between;
+}

@@ -1,0 +1,11 @@
+.registr-form{
+  max-width: 300px;
+  margin: auto;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+}
+button{
+  max-width: 200px;
+  margin: auto;
+}

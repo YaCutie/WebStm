@@ -3,3 +3,30 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.flex{
+  display: flex;
+}
+.jfb{
+  justify-content: space-between;
+}
+.jfa{
+  justify-content: space-around;
+}
+.mt20{
+  margin-top: 20px;
+}
+.mb20{
+  margin-bottom: 20px;
+}
+.mr20{
+  margin-right: 20px;
+}
+.mt300{
+  margin-top: 300px;
+}
+.mt100p{
+  margin-top: 100%;
+}
+.mt50p{
+  margin-top: 50%;
+}

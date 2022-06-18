@@ -1,14 +1,30 @@
-<div class="container">
-  <div class="row mt-5">
-    <div class="col-sm col-md-8 offset-md-2">
-      <h2>Demo Features</h2>
-      <p>
-        {{stableFeature}}
-      </p>
-      <p>
-        {{experimentalFeature}}
-      </p>
-      <button mat-button>Hello</button>
-    </div>
-  </div>
-</div>
+<!--<nav class="mat-tab-nav-bar">-->
+<!--  <ul class="">-->
+<!--    <li class="nav-item">-->
+<!--      <h3 class="nav-link" [routerLink]="['']" >-->
+<!--        Home-->
+<!--      </h3>-->
+<!--    </li>-->
+<!--    <li class="nav-item">-->
+<!--      <h3 class="nav-link" [routerLink]="['widget']">-->
+<!--        Demo-->
+<!--      </h3>-->
+<!--    </li>-->
+<!--  </ul>-->
+<!--</nav>-->
+<nav class="mat-tab-nav-bar">
+  <mat-tab-group>
+    <mat-tab label="Home">
+      <app-home></app-home>
+    </mat-tab>
+    <mat-tab label="User data">
+      <app-user-data></app-user-data>
+    </mat-tab>
+<!--    <mat-tab label="Log">-->
+<!--      <app-login></app-login>-->
+<!--    </mat-tab>-->
+<!--    <mat-tab label="Reg">-->
+<!--      <app-registration></app-registration>-->
+<!--    </mat-tab>-->
+  </mat-tab-group>
+</nav>

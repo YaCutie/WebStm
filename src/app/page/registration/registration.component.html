@@ -1,0 +1,55 @@
+<form class="registr-form mb20">
+  <mat-form-field class="mt50p" appearance="fill">
+    <mat-label>E-mail</mat-label>
+    <input name="email" [(ngModel)]="email" type="text" matInput placeholder="Введите E-mail">
+  </mat-form-field>
+
+  <mat-form-field class="" appearance="fill">
+    <mat-label>Фамилия</mat-label>
+    <input name="surename" [(ngModel)]="surname" type="text" matInput placeholder="Введите фамилию">
+  </mat-form-field>
+
+  <mat-form-field class="" appearance="fill">
+    <mat-label>Имя</mat-label>
+    <input name="name" [(ngModel)]="name" type="text" matInput placeholder="Введите имя">
+  </mat-form-field>
+
+  <mat-form-field class="" appearance="fill">
+    <mat-label>Отчество</mat-label>
+    <input name="lastname" [(ngModel)]="middleName" type="text" matInput placeholder="Введите отчество">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Choose a date</mat-label>
+    <input matInput (dateInput)="OnDateChange($event.value)" [matDatepicker]="picker">
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker ></mat-datepicker>
+  </mat-form-field>
+
+
+
+  <mat-form-field class="" appearance="fill">
+    <mat-label>Телефон</mat-label>
+    <input name="phone" [(ngModel)]="phone" type="text" matInput placeholder="Введите телефон">
+  </mat-form-field>
+
+  <mat-form-field class="" appearance="fill">
+    <mat-label>Логин</mat-label>
+    <input name="log" [(ngModel)]="login" type="text" matInput placeholder="Введите логин">
+  </mat-form-field>
+
+  <mat-form-field class="" appearance="fill">
+    <mat-label>Пароль</mat-label>
+    <input name="pass" [(ngModel)]="password" type="password" matInput password placeholder="Введите пароль">
+  </mat-form-field>
+
+  <mat-form-field class="" appearance="fill">
+    <mat-label>Повторите пароль</mat-label>
+    <input name="retPass" [(ngModel)]="returnPassword" type="password" matInput password placeholder="Повторите пароль">
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" (click)="onRegistration()">Зарегистрироваться</button>
+  <a mat-button routerLink="/login">Уже зарегистрированы? Войдите!</a>
+
+</form>

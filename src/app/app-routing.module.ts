@@ -1,21 +1,61 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './home/home.component';
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
+import {HomeComponent} from './page/home/home.component';
 import {WidgetComponent} from "./widget/widget.component";
+import {MatTabsModule} from "@angular/material/tabs";
+import {LoginComponent} from "./page/login/login.component";
+import {RegistrationComponent} from "./page/registration/registration.component";
+import {ApplicationComponent} from "./page/application/application.component";
+import {UserDataComponent} from "./page/user-data/user-data.component";
+import {MaterialAppModule} from "./ngmaterial.module";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {CommonModule} from "@angular/common";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {CardsComponent} from "./page/cards/cards.component";
+import {MatGridListModule} from "@angular/material/grid-list";
+import {MatCardModule} from "@angular/material/card";
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatStepperModule} from "@angular/material/stepper";
+import {ServiceDialogComponent} from "./page/cards/service-dialog/service-dialog.component";
 
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent
+    redirectTo: 'login',
+    pathMatch: 'full'
   },
   {
-    path: 'widget',
-    component: WidgetComponent,
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: 'registration',
+    component: RegistrationComponent
+  },
+  {
+    path: 'clientpage',
+    component: WidgetComponent
+  },
+  {
+    path: 'newapplication',
+    component: ApplicationComponent
   },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  declarations: [
+    WidgetComponent,
+    HomeComponent,
+    LoginComponent,
+    ApplicationComponent,
+    RegistrationComponent,
+    UserDataComponent,
+    CardsComponent,
+    ServiceDialogComponent,
+  ],
+  imports: [RouterModule.forRoot(routes), MatTabsModule, MaterialAppModule, FormsModule, CommonModule, MatFormFieldModule, MatDatepickerModule, MatGridListModule, MatCardModule, MatPaginatorModule, MatStepperModule, ReactiveFormsModule],
+  exports: [WidgetComponent]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
