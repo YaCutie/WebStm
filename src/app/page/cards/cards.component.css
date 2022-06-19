@@ -1,6 +1,17 @@
 .grid-container {
   margin: 20px;
 }
+.info{
+  border-bottom: 1px solid rgba(174, 163, 178, 0.52);
+}
+.servicebtn{
+  border-radius: 10px;
+  font-size: 17px;
+  font-weight: 400;
+  color: black;
+  background-color: #dbc9ff;
+  margin-bottom: 10px;
+}
 .pagination{
   background-color: #fbf1ff;
   border-radius: 10px;
@@ -19,7 +30,7 @@
   border-style: groove;
   border-radius: 10px;
   padding: 15px;
-  font-size: 18px;
+  font-size: 20px;
   font-family: sans-serif;
   font-weight: 500;
 }

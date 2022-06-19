@@ -21,6 +21,10 @@ import {MatInputModule} from "@angular/material/input";
 import {MatNativeDateModule} from '@angular/material/core';
 import {CardsComponent} from "./page/cards/cards.component";
 import {MatDialogModule} from "@angular/material/dialog";
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import {USER_REDUCER_NODE, userReducer} from "./store/user.reducer";
 
 @NgModule({
   declarations: [
@@ -42,6 +46,14 @@ import {MatDialogModule} from "@angular/material/dialog";
     MatIconModule,
     FormsModule,
     MatDialogModule,
+    StoreModule.forRoot({}, {
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true
+      }
+    }),
+    StoreModule.forFeature(USER_REDUCER_NODE, userReducer),
+    StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
   ],
   providers: [],
   bootstrap: [AppComponent]

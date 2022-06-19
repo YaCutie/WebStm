@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {STEPPER_GLOBAL_OPTIONS} from "@angular/cdk/stepper";
 import {FormBuilder, Validators} from "@angular/forms";
+import {Card} from "../../model/card";
+import axios from "axios";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-application',
@@ -17,6 +20,11 @@ export class ApplicationComponent implements OnInit {
   surname: any;
   name: any;
   middleName: any;
+  route: ActivatedRoute;
+  routing: Router;
+  id: any;
+  card : any;
+
   firstFormGroup = this._formBuilder.group({
     firstCtrl: ['', Validators.required],
   });
@@ -24,9 +32,27 @@ export class ApplicationComponent implements OnInit {
     secondCtrl: ['', Validators.required],
   });
 
-  constructor(private _formBuilder: FormBuilder) {}
+  constructor(@Inject(Router) router: Router,
+              @Inject(ActivatedRoute) route: ActivatedRoute,
+              private _formBuilder: FormBuilder) {
+    this.routing = router;
+    this.route = route;
+    this.id = this.route.snapshot.paramMap.get('id');
+  }
 
-  ngOnInit(): void {
+  async ngOnInit(){
+    console.log(this.id);
+    const config = {
+      url: "http://localhost:8080/personal/findpersonbyid",
+    };
+    const data = {
+      id:this.route.snapshot.paramMap.get('id')
+    }
+    await axios.post(config.url, data).then((response) => {
+        this.card = response.data;
+        console.log(this.card);
+      }
+    )
   }
 
   onApp(){

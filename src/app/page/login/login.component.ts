@@ -1,7 +1,10 @@
-import {Component, Inject, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Inject, Input, OnInit} from '@angular/core';
 import axios from "axios";
 import {AppComponent} from "../../app.component";
 import {ActivatedRoute, Router} from "@angular/router";
+import {UserLoginAction} from "../../store/user.action";
+import {UserState} from "../../store/user.reducer";
+import {Store} from "@ngrx/store";
 
 @Component({
   selector: 'app-login',
@@ -13,7 +16,7 @@ export class LoginComponent implements OnInit {
 
   login = "";
   password = "";
-
+  id: any;
   bol = true;
 
   validToken: string | undefined;
@@ -22,7 +25,7 @@ export class LoginComponent implements OnInit {
   routing: Router;
   route: ActivatedRoute;
 
-  constructor(@Inject(Router) router: Router, @Inject(ActivatedRoute) route: ActivatedRoute) {
+  constructor(@Inject(Router) router: Router,private store$: Store<UserState>, @Inject(ActivatedRoute) route: ActivatedRoute) {
     this.routing = router;
     this.route = route;
     //this.login = this.route.snapshot.paramMap.get('login');
@@ -32,7 +35,17 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public onLogin() {
+  loginEmmit = new EventEmitter<number>();
+
+  onLogin() {
+    this.loginEmmit.emit(this.id);
+    this.onLoginDispatch(this.id);
+  }
+  onLoginDispatch(id: number) {
+    this.store$.dispatch(new UserLoginAction({id}))
+  }
+
+  public Login() {
 
     const config = {
       url: "http://localhost:8080/user/login",
@@ -55,6 +68,9 @@ export class LoginComponent implements OnInit {
           this.validToken = response.data.token;
           alert("Вход прошёл успешно!");
           this.bol = false;
+          this.id = response.data.id;
+          console.log(response.data.id);
+          this.onLogin();
           this.routing.navigate(['clientpage'])
         } else {
           alert("Неверный логин или пароль!");

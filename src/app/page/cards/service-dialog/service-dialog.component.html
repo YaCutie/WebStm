@@ -1,14 +1,23 @@
-<h1 mat-dialog-title>Favorite Animal</h1>
-<div mat-dialog-content>
-  <ul>
-    <li>
-      <span ></span> {{data.service.servicesName}}
-    </li>
-    <li>
-      <span ></span> Unicorn
-    </li>
-    <li>
-      <span ></span> Lion
-    </li>
-  </ul>
-</div>
+<h1 class="mat-dialog-title">Оказываемые услуги</h1>
+<!--<div mat-dialog-content>-->
+<!--      <div *ngFor="let services of data" >{{services.service.servicesName}} </div>-->
+<!--</div>-->
+<mat-table class="services-table" [dataSource]="dataSource">
+
+  <ng-container matColumnDef="serviceName">
+    <mat-header-cell *matHeaderCellDef>Название</mat-header-cell>
+    <mat-cell class="serviceName-cell"
+              *matCellDef="let data">{{data.service.servicesName}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="price">
+    <mat-header-cell *matHeaderCellDef>Цена</mat-header-cell>
+    <mat-cell class="price-cell"
+              *matCellDef="let data">от {{data.service.price}}руб</mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+</mat-table>

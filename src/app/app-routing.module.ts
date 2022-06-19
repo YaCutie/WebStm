@@ -18,6 +18,10 @@ import {MatCardModule} from "@angular/material/card";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatStepperModule} from "@angular/material/stepper";
 import {ServiceDialogComponent} from "./page/cards/service-dialog/service-dialog.component";
+import {MatTableModule} from "@angular/material/table";
+import {ScheduleDialogComponent} from "./page/cards/schedule-dialog/schedule-dialog.component";
+import {NewapplicationDialogComponent} from "./page/cards/newapplication-dialog/newapplication-dialog.component";
+import {MatRadioModule} from "@angular/material/radio";
 
 const routes: Routes = [
   {
@@ -53,8 +57,10 @@ const routes: Routes = [
     UserDataComponent,
     CardsComponent,
     ServiceDialogComponent,
+    ScheduleDialogComponent,
+    NewapplicationDialogComponent,
   ],
-  imports: [RouterModule.forRoot(routes), MatTabsModule, MaterialAppModule, FormsModule, CommonModule, MatFormFieldModule, MatDatepickerModule, MatGridListModule, MatCardModule, MatPaginatorModule, MatStepperModule, ReactiveFormsModule],
+  imports: [RouterModule.forRoot(routes), MatTabsModule, MaterialAppModule, FormsModule, CommonModule, MatFormFieldModule, MatDatepickerModule, MatGridListModule, MatCardModule, MatPaginatorModule, MatStepperModule, ReactiveFormsModule, MatTableModule, MatRadioModule],
   exports: [WidgetComponent]
 })
 export class AppRoutingModule {

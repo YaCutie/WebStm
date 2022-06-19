@@ -2,7 +2,7 @@
   <div class="row mt-5">
     <div class="col-sm">
       <button mat-raised-button color="primary" [routerLink]="['/newapplication']">Записаться на приём</button>
-      <app-cards></app-cards>
+      <app-cards [userid]="userId | async"></app-cards>
     </div>
   </div>
 </div>

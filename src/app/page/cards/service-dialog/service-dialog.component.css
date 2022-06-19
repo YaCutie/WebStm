@@ -1,0 +1,17 @@
+.services-table{
+  width: 407px;
+}
+.serviceName-cell{
+  font-size: 17px;
+  font-weight: 400;
+  color: black;
+}
+.price-cell{
+  font-size: 17px;
+  font-weight: 400;
+  color: black;
+}
+.mat-dialog-title{
+
+  text-align: center;
+}

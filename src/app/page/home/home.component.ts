@@ -1,5 +1,10 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
+import {select, Store} from "@ngrx/store";
+import {UserState} from "../../store/user.reducer";
+import {Observable} from "rxjs";
+import {userSelector} from "../../store/user.selector";
+import {UserSyncStorageService} from "../../service/user-sync-storage.service";
 
 @Component({
   selector: 'app-home',
@@ -12,10 +17,14 @@ export class HomeComponent implements OnInit {
   routing: Router;
   route: ActivatedRoute;
 
-  constructor(@Inject(Router) router: Router, @Inject(ActivatedRoute) route: ActivatedRoute) {
+
+  userId: Observable<number> = this.store$.pipe(select(userSelector));
+
+  constructor(@Inject(Router) router: Router, @Inject(ActivatedRoute) route: ActivatedRoute, private store$: Store<UserState>,
+              private userSyncStorage: UserSyncStorageService) {
     this.routing = router;
     this.route = route;
-    //this.login = this.route.snapshot.paramMap.get('login');
+    this.userSyncStorage.init();
   }
 
   ngOnInit(): void {

@@ -11,13 +11,16 @@
         <mat-card-content class="dashboard-card-content border">
           <div class="imgdiv"><img src="{{card.photo}}"></div>
           <div class="card-text-content">
-            <p>Специализация: {{card.specializationid.specializationname}}</p>
-            <p>Должность: {{card.postid.postName}}</p>
-            <p>Категория: {{card.category}}</p>
-            <button mat-button (click)="AllServices(card.id)">Посмотреть список услуг</button>
+            <p><a class="info">Клиника: {{card.clinicid.clinicName}} ({{card.clinicid.address}})</a></p>
+            <p><a class="info">Специализация: {{card.specializationid.specializationname}}</a></p>
+            <p><a class="info">Должность: {{card.postid.postName}}</a></p>
+            <p><a class="info">Категория: {{card.category}}</a></p>
+            <p><a class="info">Рейтинг: {{card.rating}}</a></p>
+            <button mat-button class="servicebtn " (click)="Schedule(card.id)">Посмотреть расписание врача</button>
+            <button mat-button class="servicebtn" (click)="AllServices(card.id)">Посмотреть список услуг</button>
           </div>
           <div class="centerdiv">
-            <a mat-raised-button color="primary" class="more-button" [routerLink]="['/newapplication', {id: card.id}]">
+            <a mat-raised-button color="primary" class="more-button" (click)="NewApp(cards.indexOf(card), card.id)">
               Записаться на приём</a>
           </div>
         </mat-card-content>

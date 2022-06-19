@@ -1,0 +1,26 @@
+.schedule-table{
+  width: 547px;
+}
+.day-cell{
+  font-size: 17px;
+  font-weight: 400;
+  color: black;
+}
+.mat-dialog-title{
+  text-align: center;
+}
+.cabinet-cell{
+  font-size: 17px;
+  font-weight: 400;
+  color: black;
+}
+.time-cell{
+  font-size: 17px;
+  font-weight: 400;
+  color: black;
+}
+.durationofreception-cell{
+   font-size: 17px;
+   font-weight: 400;
+   color: black;
+ }
