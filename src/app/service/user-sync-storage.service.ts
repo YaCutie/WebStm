@@ -4,7 +4,6 @@ import {UserState} from "../store/user.reducer";
 import {filter} from "rxjs";
 import {userFeatureSelector} from "../store/user.selector";
 import {UserLoadStateAction} from "../store/user.action";
-
 export const USER_LOCALSTORAGE_KEY = 'user';
 
 @Injectable({

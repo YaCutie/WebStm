@@ -1,30 +1,10 @@
-<!--<nav class="mat-tab-nav-bar">-->
-<!--  <ul class="">-->
-<!--    <li class="nav-item">-->
-<!--      <h3 class="nav-link" [routerLink]="['']" >-->
-<!--        Home-->
-<!--      </h3>-->
-<!--    </li>-->
-<!--    <li class="nav-item">-->
-<!--      <h3 class="nav-link" [routerLink]="['widget']">-->
-<!--        Demo-->
-<!--      </h3>-->
-<!--    </li>-->
-<!--  </ul>-->
-<!--</nav>-->
 <nav class="mat-tab-nav-bar">
   <mat-tab-group>
     <mat-tab label="Home">
-      <app-home></app-home>
+      <app-home [userid]="userId | async" [token]="token | async"></app-home>
     </mat-tab>
     <mat-tab label="User data">
-      <app-user-data></app-user-data>
+      <app-user-data [userid]="userId | async" [token]="token | async"></app-user-data>
     </mat-tab>
-<!--    <mat-tab label="Log">-->
-<!--      <app-login></app-login>-->
-<!--    </mat-tab>-->
-<!--    <mat-tab label="Reg">-->
-<!--      <app-registration></app-registration>-->
-<!--    </mat-tab>-->
   </mat-tab-group>
 </nav>

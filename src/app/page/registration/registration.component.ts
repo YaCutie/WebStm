@@ -2,6 +2,7 @@ import {Component, Inject, NgModule, OnInit} from '@angular/core';
 import axios from "axios";
 import {ActivatedRoute, Router} from "@angular/router";
 import {DateAdapter, MAT_DATE_LOCALE} from "@angular/material/core";
+import {UserSyncStorageService} from "../../service/user-sync-storage.service";
 // import 'moment/locale/en';
 
 
@@ -33,7 +34,7 @@ export class RegistrationComponent implements OnInit {
 
 
   constructor(@Inject(Router) router: Router, @Inject(ActivatedRoute) route: ActivatedRoute, private _adapter: DateAdapter<any>,
-              @Inject(MAT_DATE_LOCALE) private _locale: string,) {
+              @Inject(MAT_DATE_LOCALE) private _locale: string, private userSyncStorage: UserSyncStorageService) {
     this.routing = router;
     this.route = route;
     this._locale =  'en-GB';
@@ -90,7 +91,7 @@ export class RegistrationComponent implements OnInit {
           this.validToken = response.data.token;
           alert("Регистрация прошла успешно!");
           this.bol = false;
-          this.routing.navigate(['clientpage'])
+          this.routing.navigate(['login'])
         } else {
           alert("Логин или Email заняты!");
         }

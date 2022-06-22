@@ -11,6 +11,7 @@ import {userSelector} from "../../../store/user.selector";
 import {UserSyncStorageService} from "../../../service/user-sync-storage.service";
 import axios from "axios";
 import {ScheduleDialogComponent} from "../schedule-dialog/schedule-dialog.component";
+import {Service} from "../../../model/service";
 
 @Component({
   selector: 'app-newapplication-dialog',
@@ -21,11 +22,15 @@ export class NewapplicationDialogComponent implements OnInit {
 
   client: any;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: { schedules: Schedule[], client: Client }) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: {services:Service[], schedules: Schedule[], client: Client, person:Card }) {
   }
 
   async ngOnInit() {
+    console.log(this.data.services);
     console.log(this.data.schedules);
+    console.log(this.data.client);
+    console.log(this.data.person);
+
   }
   // async CheckDateTime(){
   //   const config = {

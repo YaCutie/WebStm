@@ -7,3 +7,7 @@ export const userSelector = createSelector(
   userFeatureSelector,
   state => state.id
 )
+export const tokenSelector = createSelector(
+  userFeatureSelector,
+  state => state.token
+)

@@ -2,9 +2,10 @@ import {Component, EventEmitter, Inject, Input, OnInit} from '@angular/core';
 import axios from "axios";
 import {AppComponent} from "../../app.component";
 import {ActivatedRoute, Router} from "@angular/router";
-import {UserLoginAction} from "../../store/user.action";
+import {UserLoginAction, UserLogoutAction} from "../../store/user.action";
 import {UserState} from "../../store/user.reducer";
 import {Store} from "@ngrx/store";
+import {UserSyncStorageService} from "../../service/user-sync-storage.service";
 
 @Component({
   selector: 'app-login',
@@ -19,33 +20,41 @@ export class LoginComponent implements OnInit {
   id: any;
   bol = true;
 
-  validToken: string | undefined;
-
+  token: any;
   activate: boolean = false;
   routing: Router;
   route: ActivatedRoute;
 
-  constructor(@Inject(Router) router: Router,private store$: Store<UserState>, @Inject(ActivatedRoute) route: ActivatedRoute) {
+  constructor(@Inject(Router) router: Router,private store$: Store<UserState>, @Inject(ActivatedRoute) route: ActivatedRoute,
+              private userSyncStorage: UserSyncStorageService) {
     this.routing = router;
     this.route = route;
-    //this.login = this.route.snapshot.paramMap.get('login');
   }
 
-
-  ngOnInit(): void {
-  }
-
+  logoutEmmit = new EventEmitter<number>();
+  tokenEmmit = new EventEmitter<string>();
   loginEmmit = new EventEmitter<number>();
 
-  onLogin() {
-    this.loginEmmit.emit(this.id);
-    this.onLoginDispatch(this.id);
+  ngOnInit(): void {
+    this.userSyncStorage.init();
+    this.logoutEmmit = new EventEmitter<number>();
+    this.onLogoutDispatch(0)
   }
-  onLoginDispatch(id: number) {
-    this.store$.dispatch(new UserLoginAction({id}))
+
+  onLogin() {
+    this.tokenEmmit.emit(this.token);
+    this.loginEmmit.emit(this.id);
+    this.onLoginDispatch(this.id, this.token);
+  }
+  onLoginDispatch(id: number, token: string) {
+    this.store$.dispatch(new UserLoginAction({id, token}))
+  }
+  onLogoutDispatch(id: number) {
+    this.store$.dispatch(new UserLogoutAction({id}))
   }
 
   public Login() {
+
 
     const config = {
       url: "http://localhost:8080/user/login",
@@ -65,7 +74,7 @@ export class LoginComponent implements OnInit {
       .then((response) => {
         console.log(response.data);
         if (response.data.verification) {
-          this.validToken = response.data.token;
+          this.token = response.data.token;
           alert("Вход прошёл успешно!");
           this.bol = false;
           this.id = response.data.id;
@@ -79,32 +88,6 @@ export class LoginComponent implements OnInit {
       .catch((error) => {
         console.log(error);
         alert("Неверный логин или пароль!");
-      });
-    console.log(this.bol)
-  }
-
-  onFind() {
-
-    const config = {
-      url: "http://localhost:8080/user/find",
-    };
-    this.bol = false;
-    const data = {
-      id:3
-    };
-    const headers = {
-      "Content-Type": "application/json",
-      "x-mock-match-request-body": "true",
-      'Authorization': 'Bearer ' + this.validToken,
-    };
-    axios
-      .post(config.url, data, { headers })
-      .then((response) => {
-        console.log(response.data.user);
-      })
-      .catch((error) => {
-        console.log(error);
-        alert("Ошибка");
       });
     console.log(this.bol)
   }

@@ -30,6 +30,8 @@ export class CardsComponent implements OnInit {
   client: any;
   @Input()
   userid: any;
+  @Input()
+  token:any;
   pagedList: Card[] = [];
   cardLength: any;
   pageSize = 3;
@@ -40,14 +42,22 @@ export class CardsComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.token)
+    console.log(this.userid)
+
     this.LoadCards();
   }
 
   async LoadCards() {
+    const headers = {
+      "Content-Type": "application/json",
+      "x-mock-match-request-body": "true",
+      'Authorization': 'Bearer ' + this.token,
+    };
     const config = {
       url: "http://localhost:8080/personal/findall",
     };
-    await axios.get(config.url).then((response) => {
+    await axios.get(config.url, {headers}).then((response) => {
         this.cards = response.data;
         this.cardLength = this.cards.length;
         this.pagedList = this.cards.slice(0, this.pageSize)
@@ -66,10 +76,15 @@ export class CardsComponent implements OnInit {
   }
 
   async AllServices(id: number) {
+    const headers = {
+      "Content-Type": "application/json",
+      "x-mock-match-request-body": "true",
+      'Authorization': 'Bearer ' + this.token,
+    };
     const config = {
       url: "http://localhost:8080/personal/findallservices",
     };
-    await axios.post(config.url, {id}).then((response) => {
+    await axios.post(config.url, {id}, {headers}).then((response) => {
         this.services = response.data;
       }
     )
@@ -78,12 +93,16 @@ export class CardsComponent implements OnInit {
     });
   }
 
-
   async Schedule(id: number) {
+    const headers = {
+      "Content-Type": "application/json",
+      "x-mock-match-request-body": "true",
+      'Authorization': 'Bearer ' + this.token,
+    };
     const config = {
       url: "http://localhost:8080/personal/findallschedule",
     };
-    await axios.post(config.url, {id}).then((response) => {
+    await axios.post(config.url, {id}, {headers}).then((response) => {
         this.schedules = response.data;
       }
     )
@@ -93,31 +112,42 @@ export class CardsComponent implements OnInit {
   }
 
   async NewApp(cardid: number, id: number) {
-
+    const headers = {
+      "Content-Type": "application/json",
+      "x-mock-match-request-body": "true",
+      'Authorization': 'Bearer ' + this.token,
+    };
     const config1 = {
       url: "http://localhost:8080/personal/findallschedule",
     };
-    await axios.post(config1.url, {id}).then((response) => {
+    await axios.post(config1.url, {id}, { headers } ).then((response) => {
         this.schedules = response.data;
       }
-    )
+    );
+    const config2 = {
+      url: "http://localhost:8080/personal/findallservices",
+    };
+    await axios.post(config2.url, {id}, {headers}).then((response) => {
+        this.services = response.data;
+      }
+    );
     const config = {
       url: "http://localhost:8080/user/find",
     };
-    await axios.post(config.url, {id: this.userid}).then((response) => {
+    await axios.post(config.url, {id: this.userid}, { headers }).then((response) => {
         this.client = response.data.рўlient;
         let age = this.getAge(this.client.dateOfBirth[0] + "-" + this.client.dateOfBirth[1] + "-" + this.client.dateOfBirth[2])
 
         if (age <= 14 && this.cards[cardid].specializationid.id == 1) {
           console.log("Го малышь");
           this.dialog.open(NewapplicationDialogComponent, {
-            data: {schedules: this.schedules, client: this.client}
+            data: {services: this.services, schedules: this.schedules, client: this.client, card:this.cards[cardid]}
           });
         }
         else if (age >= 14 && this.cards[cardid].specializationid.id == 2) {
           console.log("Го большой");
           this.dialog.open(NewapplicationDialogComponent, {
-            data: {schedules: this.schedules, client: this.client}
+            data: {services: this.services, schedules: this.schedules, client: this.client, card:this.cards[cardid]}
           });
         }
         else {
@@ -131,4 +161,3 @@ export class CardsComponent implements OnInit {
     return ((new Date().getTime() - new Date(date)) / (24 * 3600 * 365.25 * 1000)) | 0;
   }
 }
-

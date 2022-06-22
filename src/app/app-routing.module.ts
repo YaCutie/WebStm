@@ -41,10 +41,6 @@ const routes: Routes = [
     path: 'clientpage',
     component: WidgetComponent
   },
-  {
-    path: 'newapplication',
-    component: ApplicationComponent
-  },
 ];
 
 @NgModule({

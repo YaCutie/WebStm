@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, Input, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
@@ -11,6 +11,10 @@ export class UserDataComponent implements OnInit {
   activate: boolean = false;
   routing: Router;
   route: ActivatedRoute;
+  @Input()
+  userid: any;
+  @Input()
+  token:any;
 
   constructor(@Inject(Router) router: Router, @Inject(ActivatedRoute) route: ActivatedRoute) {
     this.routing = router;
