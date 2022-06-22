@@ -22,6 +22,7 @@ import {MatTableModule} from "@angular/material/table";
 import {ScheduleDialogComponent} from "./page/cards/schedule-dialog/schedule-dialog.component";
 import {NewapplicationDialogComponent} from "./page/cards/newapplication-dialog/newapplication-dialog.component";
 import {MatRadioModule} from "@angular/material/radio";
+import {MatSelectModule} from "@angular/material/select";
 
 const routes: Routes = [
   {
@@ -56,7 +57,7 @@ const routes: Routes = [
     ScheduleDialogComponent,
     NewapplicationDialogComponent,
   ],
-  imports: [RouterModule.forRoot(routes), MatTabsModule, MaterialAppModule, FormsModule, CommonModule, MatFormFieldModule, MatDatepickerModule, MatGridListModule, MatCardModule, MatPaginatorModule, MatStepperModule, ReactiveFormsModule, MatTableModule, MatRadioModule],
+  imports: [RouterModule.forRoot(routes), MatTabsModule, MaterialAppModule, FormsModule, CommonModule, MatFormFieldModule, MatDatepickerModule, MatGridListModule, MatCardModule, MatPaginatorModule, MatStepperModule, ReactiveFormsModule, MatTableModule, MatRadioModule, MatSelectModule],
   exports: [WidgetComponent]
 })
 export class AppRoutingModule {

@@ -141,13 +141,13 @@ export class CardsComponent implements OnInit {
         if (age <= 14 && this.cards[cardid].specializationid.id == 1) {
           console.log("Го малышь");
           this.dialog.open(NewapplicationDialogComponent, {
-            data: {services: this.services, schedules: this.schedules, client: this.client, card:this.cards[cardid]}
+            data: {services: this.services, schedules: this.schedules, client: this.client}
           });
         }
         else if (age >= 14 && this.cards[cardid].specializationid.id == 2) {
           console.log("Го большой");
           this.dialog.open(NewapplicationDialogComponent, {
-            data: {services: this.services, schedules: this.schedules, client: this.client, card:this.cards[cardid]}
+            data: {services: this.services, schedules: this.schedules, client: this.client}
           });
         }
         else {
