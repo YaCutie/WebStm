@@ -1,0 +1,69 @@
+.dashboard-card-content {
+  text-align: left;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-text-content {
+  margin-left: 50px;
+  margin-top: 50px;
+  border-style: groove;
+  border-radius: 10px;
+  padding: 15px;
+  font-size: 20px;
+  font-family: sans-serif;
+  font-weight: 500;
+}
+
+.info {
+}
+
+.card-main-text {
+  font-weight: bold;
+}
+
+.mat-header{
+  font-size: 25px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.63);
+}
+
+.more-button {
+  margin-left: 50px;
+  width: 230px;
+  font-size: 19px;
+  margin-top: 85px;
+  border-style: groove;
+  border-radius: 10px;
+  border-color: rgba(0, 0, 0, 0.74);
+  color: black;
+  font-weight: 500;
+  background-color: #dbc9ff;
+  max-height: 42px;
+}
+
+.userData {
+  display: flex;
+}
+
+.centerdiv {
+  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.58);
+  align-self: center;
+  padding: 10px;
+}
+
+.services-table {
+  width: 1300px;
+}
+
+.serviceName-cell {
+  font-size: 25px;
+  font-weight: 400;
+  color: black;
+}
+
+.mat-dialog-title {
+  text-align: center;
+  font-size: 30px;
+}

@@ -2,3 +2,14 @@
   margin-top: 7px;
   align-self: end;
 }
+.more-button {
+  width: 230px;
+  font-size: 19px;
+  margin-top: 25px;
+  border-style: groove;
+  border-radius: 10px;
+  border-color: rgba(0, 0, 0, 0.74);
+  color: black;
+  font-weight: 500;
+  background-color: #dbc9ff;
+}

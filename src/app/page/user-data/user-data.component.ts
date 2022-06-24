@@ -1,5 +1,8 @@
 import {Component, Inject, Input, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
+import axios from "axios";
+import {Service} from "../../model/service";
+import {Appointment} from "../../model/appointment";
 
 @Component({
   selector: 'app-user-data',
@@ -14,19 +17,67 @@ export class UserDataComponent implements OnInit {
   @Input()
   userid: any;
   @Input()
-  token:any;
+  token: any;
+  client: any;
+  displayedColumns = ["receptionDate", "receptionTime","clinicid.clinicName", "personalid", "status.statusname"];
+  dataSource: any;
+  data: Appointment[] = [];
+  DoB: any;
 
   constructor(@Inject(Router) router: Router, @Inject(ActivatedRoute) route: ActivatedRoute) {
     this.routing = router;
     this.route = route;
-    //this.login = this.route.snapshot.paramMap.get('login');
   }
 
   ngOnInit(): void {
+    this.FindUser();
+    this.FindAppointment();
   }
 
+  async FindAppointment() {
+    const headers = {
+      "Content-Type": "application/json",
+      "x-mock-match-request-body": "true",
+      'Authorization': 'Bearer ' + this.token,
+    };
+    const config1 = {
+      url: "http://localhost:8080/user/allappointment",
+    };
+    await axios.post(config1.url, {id: this.userid}, {headers}).then((response) => {
+        this.data = response.data;
+        this.dataSource = this.data;
+        console.log(this.data)
+      }
+    );
+  }
+
+  async FindUser() {
+    const headers = {
+      "Content-Type": "application/json",
+      "x-mock-match-request-body": "true",
+      'Authorization': 'Bearer ' + this.token,
+    };
+    const config1 = {
+      url: "http://localhost:8080/user/find",
+    };
+    await axios.post(config1.url, {id: this.userid}, {headers}).then((response) => {
+        this.client = response.data.рўlient;
+        this.DoB = new Date(this.client.dateOfBirth[0] + "-" + this.client.dateOfBirth[1] + "-" + this.client.dateOfBirth[2]).toLocaleDateString()
+      }
+    );
+  }
 
   onExit() {
     this.routing.navigate(['login'])
+  }
+
+  Date(receptionTime: any) {
+    let date = new Date(receptionTime * 1000).toLocaleDateString();
+    return date;
+  }
+
+  Time(receptionTime: any) {
+    let date = new Date(receptionTime * 1000).toLocaleTimeString()  ;
+    return date;
   }
 }

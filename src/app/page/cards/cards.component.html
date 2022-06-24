@@ -1,6 +1,6 @@
 <div class="grid-container">
   <h1 class="mat-h1"></h1>
-  <mat-grid-list cols="3" rowHeight="700px">
+  <mat-grid-list cols="3" rowHeight="715px">
     <mat-grid-tile *ngFor="let card of pagedList" [colspan]="1" [rowspan]="1">
       <mat-card class="dashboard-card">
         <mat-card-header>
@@ -11,7 +11,8 @@
         <mat-card-content class="dashboard-card-content border">
           <div class="imgdiv"><img src="{{card.photo}}"></div>
           <div class="card-text-content">
-            <p><a class="info">Клиника: {{card.clinicid.clinicName}} ({{card.clinicid.address}})</a></p>
+            <p><a class="info">Клиника: {{card.clinicid.clinicName}}</a></p>
+            <p><a class="info">Адрес: {{card.clinicid.address}}</a></p>
             <p><a class="info">Специализация: {{card.specializationid.specializationname}}</a></p>
             <p><a class="info">Должность: {{card.postid.postName}}</a></p>
             <p><a class="info">Категория: {{card.category}}</a></p>

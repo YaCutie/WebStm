@@ -15,6 +15,7 @@ import {userSelector} from "../../store/user.selector";
 import {UserState} from "../../store/user.reducer";
 import {UserSyncStorageService} from "../../service/user-sync-storage.service";
 import {consolidateMessages} from "@angular/localize/tools/src/extract/translation_files/utils";
+import {Appointment} from "../../model/appointment";
 
 @Component({
   selector: 'app-cards',
@@ -36,6 +37,7 @@ export class CardsComponent implements OnInit {
   cardLength: any;
   pageSize = 3;
   router: Router;
+  allAppointment: Appointment[] = [];
 
   constructor(@Inject(Router) router: Router, public dialog: MatDialog) {
     this.router = router;
@@ -46,6 +48,7 @@ export class CardsComponent implements OnInit {
     console.log(this.userid)
 
     this.LoadCards();
+    this.FindAppointment();
   }
 
   async LoadCards() {
@@ -112,6 +115,10 @@ export class CardsComponent implements OnInit {
   }
 
   async NewApp(cardid: number, id: number) {
+    if (this.allAppointment.length>0){
+      alert("Вы уже записаны к врачу!")
+      return;
+    }
     const headers = {
       "Content-Type": "application/json",
       "x-mock-match-request-body": "true",
@@ -136,18 +143,19 @@ export class CardsComponent implements OnInit {
     };
     await axios.post(config.url, {id: this.userid}, { headers }).then((response) => {
         this.client = response.data.рўlient;
+        console.log(this.client)
         let age = this.getAge(this.client.dateOfBirth[0] + "-" + this.client.dateOfBirth[1] + "-" + this.client.dateOfBirth[2])
 
         if (age <= 14 && this.cards[cardid].specializationid.id == 1) {
           console.log("Го малышь");
           this.dialog.open(NewapplicationDialogComponent, {
-            data: {services: this.services, schedules: this.schedules, client: this.client}
+            data: {card: this.cards[cardid], services: this.services, schedules: this.schedules, client: this.client, token: this.token}
           });
         }
         else if (age >= 14 && this.cards[cardid].specializationid.id == 2) {
           console.log("Го большой");
           this.dialog.open(NewapplicationDialogComponent, {
-            data: {services: this.services, schedules: this.schedules, client: this.client}
+            data: {card: this.cards[cardid], services: this.services, schedules: this.schedules, client: this.client, token: this.token}
           });
         }
         else {
@@ -156,6 +164,22 @@ export class CardsComponent implements OnInit {
       }
     )
   }
+
+  async FindAppointment() {
+    const headers = {
+      "Content-Type": "application/json",
+      "x-mock-match-request-body": "true",
+      'Authorization': 'Bearer ' + this.token,
+    };
+    const config1 = {
+      url: "http://localhost:8080/user/allappointment",
+    };
+    await axios.post(config1.url, {id: this.userid}, {headers}).then((response) => {
+        this.allAppointment = response.data;
+      }
+    );
+  }
+
   getAge(date: string) {
     // @ts-ignore
     return ((new Date().getTime() - new Date(date)) / (24 * 3600 * 365.25 * 1000)) | 0;

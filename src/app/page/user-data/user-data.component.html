@@ -1,3 +1,56 @@
 <form>
-  <button mat-raised-button color="primary" (click)="onExit()">Выйти</button>
+  <div class="userData">
+    <div class="card-text-content">
+      <h1><a class="info">{{client.surname}} {{client.name}} {{client.middlename}}</a></h1>
+      <p><a class="info">E-mail: {{client.email}}</a></p>
+      <p><a class="info">Дата рождения: {{DoB}}</a></p>
+      <p><a class="info">Номер телефона: {{client.phone}}</a></p>
+    </div>
+    <a mat-raised-button color="primary" class="more-button" (click)="onExit()">
+      Выйти из аккаунта</a>
+  </div>
+  <mat-card-content class="dashboard-card-content border">\
+    <div class="centerdiv">
+      <h1 class="mat-dialog-title">Список приёмов</h1>
+      <mat-table class="services-table" [dataSource]="dataSource">
+
+        <ng-container matColumnDef="receptionDate">
+          <mat-header-cell class="mat-header" *matHeaderCellDef>Дата приёма</mat-header-cell>
+          <mat-cell class="serviceName-cell"
+                    *matCellDef="let data"> {{Date(data.receptionTime)}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="receptionTime">
+          <mat-header-cell class="mat-header" *matHeaderCellDef>Время приёма</mat-header-cell>
+          <mat-cell class="serviceName-cell"
+                    *matCellDef="let data"> {{Time(data.receptionTime)}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="clinicid.clinicName">
+          <mat-header-cell class="mat-header" *matHeaderCellDef>Клиника</mat-header-cell>
+          <mat-cell class="serviceName-cell"
+                    *matCellDef="let data">{{data.clinicid.clinicName}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="personalid">
+          <mat-header-cell class="mat-header" *matHeaderCellDef>Врач</mat-header-cell>
+          <mat-cell class="serviceName-cell"
+                    *matCellDef="let data"> {{data.personalid.surname}} {{data.personalid.name.substring(0, 1)}}.
+            {{data.personalid.middlename.substring(0, 1)}}.
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="status.statusname">
+          <mat-header-cell class="mat-header" *matHeaderCellDef>Статус записи</mat-header-cell>
+          <mat-cell class="serviceName-cell"
+                    *matCellDef="let data">{{data.status.statusname}}</mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+      </mat-table>
+    </div>
+  </mat-card-content>
 </form>

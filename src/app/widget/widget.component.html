@@ -1,9 +1,9 @@
 <nav class="mat-tab-nav-bar">
   <mat-tab-group>
-    <mat-tab label="Home">
+    <mat-tab label="Главная">
       <app-home [userid]="userId | async" [token]="token | async"></app-home>
     </mat-tab>
-    <mat-tab label="User data">
+    <mat-tab label="Данные ползователя">
       <app-user-data [userid]="userId | async" [token]="token | async"></app-user-data>
     </mat-tab>
   </mat-tab-group>

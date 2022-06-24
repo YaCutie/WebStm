@@ -1,10 +1,12 @@
 .grid-container {
   margin: 20px;
 }
-.info{
+
+.info {
   border-bottom: 1px solid rgba(174, 163, 178, 0.52);
 }
-.servicebtn{
+
+.servicebtn {
   border-radius: 10px;
   font-size: 17px;
   font-weight: 400;
@@ -12,13 +14,15 @@
   background-color: #dbc9ff;
   margin-bottom: 10px;
 }
-.pagination{
+
+.pagination {
   background-color: #fbf1ff;
   border-radius: 10px;
   font-size: 17px;
   font-weight: 400;
   color: black;
 }
+
 .dashboard-card {
   position: absolute;
   top: 15px;
@@ -26,7 +30,8 @@
   right: 15px;
   bottom: 15px;
 }
-.card-text-content{
+
+.card-text-content {
   border-style: groove;
   border-radius: 10px;
   padding: 15px;
@@ -34,25 +39,31 @@
   font-family: sans-serif;
   font-weight: 500;
 }
-.card-main-text{
+
+.card-main-text {
   font-weight: bold;
 }
+
 .dashboard-card-content {
   text-align: left;
   margin-top: 10px;
   display: flex;
   flex-direction: column;
 }
-.imgdiv{
+
+.imgdiv {
   align-self: center;
 }
-.centerdiv{
+
+.centerdiv {
   align-self: center;
 }
-img{
+
+img {
   width: 210px;
   height: 210px;
 }
+
 .cardTitle {
   width: 60px;
   word-wrap: break-word;
@@ -60,6 +71,13 @@ img{
 }
 
 .more-button {
-  max-width: 200px;
-  margin-top: 15px;
+  width: 230px;
+  font-size: 19px;
+  margin-top: 25px;
+  border-style: groove;
+  border-radius: 10px;
+  border-color: rgba(0, 0, 0, 0.74);
+  color: black;
+  font-weight: 500;
+  background-color: #dbc9ff;
 }

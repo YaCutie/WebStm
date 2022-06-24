@@ -10,7 +10,8 @@ export class Card {
     id:0,
     specializationname: '',
   };
-  clinicid: { clinicName: string; address: string; } = {
+  clinicid: {id:number, clinicName: string; address: string; } = {
+    id: 0,
     clinicName: "",
     address: "",
   }

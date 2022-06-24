@@ -1,5 +1,5 @@
 <form class="registr-form mb20">
-  <mat-form-field class="mt50p" appearance="fill">
+  <mat-form-field class="mt20" appearance="fill">
     <mat-label>E-mail</mat-label>
     <input name="email" [(ngModel)]="email" type="text" matInput placeholder="Введите E-mail">
   </mat-form-field>
@@ -31,7 +31,7 @@
 
   <mat-form-field class="" appearance="fill">
     <mat-label>Телефон</mat-label>
-    <input name="phone" [(ngModel)]="phone" type="text" matInput placeholder="Введите телефон">
+    <input name="phone" [(ngModel)]="phone" type="text" maxlength="11" matInput placeholder="Введите телефон">
   </mat-form-field>
 
   <mat-form-field class="" appearance="fill">
@@ -49,7 +49,7 @@
     <input name="retPass" [(ngModel)]="returnPassword" type="password" matInput password placeholder="Повторите пароль">
   </mat-form-field>
 
-  <button mat-raised-button color="primary" (click)="onRegistration()">Зарегистрироваться</button>
-  <a mat-button routerLink="/login">Уже зарегистрированы? Войдите!</a>
+  <button mat-raised-button (click)="onRegistration()">Зарегистрироваться</button>
+  <a mat-button class="reglink" routerLink="/login">Уже зарегистрированы? Войдите!</a>
 
 </form>

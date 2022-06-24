@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit, ViewChild} from '@angular/core';
-import {MAT_DIALOG_DATA} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {Schedule} from "../../../model/schedule";
 import {Card} from "../../../model/card";
 import {Client} from "../../../model/Client";
@@ -43,8 +43,8 @@ export class NewapplicationDialogComponent implements OnInit {
     return day !== 0;
   };
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: {services:Service[], schedules: Schedule[], client: Client}) {
-  }
+  constructor(public dialogRef: MatDialogRef<NewapplicationDialogComponent>, @Inject(MAT_DIALOG_DATA)
+  public data: {card: Card, services:Service[], schedules: Schedule[], client: Client, token: String}) {}
 
   async ngOnInit() {
     console.log(this.data.services);
@@ -79,6 +79,7 @@ export class NewapplicationDialogComponent implements OnInit {
     if (new Date(this.DateApp)<new Date())
     {
       alert("На этот день запись недоступна")
+      this.resetForm()
       return null;
     }
     this.day = new Date(this.DateApp).getDay()
@@ -112,7 +113,71 @@ export class NewapplicationDialogComponent implements OnInit {
     return null;
   }
 
-  async AddApp(){
+  async SendEmail(text: string){
+    // const headers = {
+    //   "Content-Type": "application/json",
+    //   "x-mock-match-request-body": "true",
+    //   'Authorization': 'Bearer ' + this.data.token,
+    // };
+    // const data = {
+    //   email: this.data.client.email,
+    //   date: this.DateApp,
+    //   time: this.selected,
+    //   clinic: this.data.card.clinicid.clinicName,
+    //   person: this.data.card.surname + " " + this.data.card.name.substring(0, 1) + "." + this.data.card.middlename.substring(0, 1) + ".",
+    //   status: "Новая"
+    // }
+    // const config = {
+    //   url: "http://localhost:8080/user/sendemail",
+    // };
+    // await axios.post(config.url, data, {headers}).then((response) => {
+    //     console.log(response.data);
+    //   }
+    // )
 
+    var element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    element.setAttribute('download', "Ticket.txt");
+
+    element.style.display = 'none';
+    document.body.appendChild(element);
+
+    element.click();
+
+    document.body.removeChild(element);
+  }
+
+  async AddApp(){
+    const headers = {
+      "Content-Type": "application/json",
+      "x-mock-match-request-body": "true",
+      'Authorization': 'Bearer ' + this.data.token,
+    };
+    const data = {
+      receptionTime: this.DateApp + " " + this.selected,
+      clientid: this.data.client.id,
+      clinicid: this.data.card.clinicid.id,
+      personalid: this.data.card.id,
+      cabinetNumber: this.schedule.cabinet,
+      status:  1,
+    }
+    const config = {
+      url: "http://localhost:8080/user/newappoitment",
+    };
+    await axios.post(config.url, data, {headers}).then((response) => {
+        console.log(response.data);
+        if (response.data){
+          alert("Ваша заявка зарегистрирована");
+          this.SendEmail("Ваша заявка находится в рассмотрении" + "\n Дата: " + this.DateApp + "\n Время: " + this.selected
+            + "\n Клиника: " + this.data.card.clinicid.clinicName + "\n Врач: " + this.data.card.surname + " " + this.data.card.name.substring(0, 1)
+            + "." + this.data.card.middlename.substring(0, 1) + "." + "\n Статус: Новая");
+          this.dialogRef.close();
+          //location.reload();
+        }
+        else {
+          alert("Ошибка!");
+        }
+      }
+    )
   }
 }

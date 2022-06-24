@@ -1,13 +1,12 @@
 <h1 class="mat-dialog-title">Запись на приём</h1>
 <div class="flex">
   <mat-form-field appearance="fill">
-    <mat-label>Choose a date</mat-label>
+    <mat-label>Выберите дату</mat-label>
     <input #fromInput matInput [(ngModel)]="matDatepicker" [matDatepickerFilter]="myFilter"
            (dateInput)="OnDateChange($event.value)" [matDatepicker]="picker">
     <mat-hint>MM/DD/YYYY</mat-hint>
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker disabled="false"></mat-datepicker>
-
+    <mat-datepicker  #picker disabled="false"></mat-datepicker>
   </mat-form-field>
   <mat-form-field appearance="fill">
     <mat-label>Время приёма</mat-label>
@@ -21,6 +20,6 @@
   </mat-form-field>
 </div>
 <div class="centerdiv">
-  <button mat-button mat-raised-button color="primary" class="more-button" (click)="AddApp()">
+  <button mat-button mat-raised-button class="more-button" (click)="AddApp()">
     Записаться на приём</button>
 </div>
