@@ -1,6 +1,5 @@
 import {Component, EventEmitter, Inject, Input, OnInit} from '@angular/core';
 import axios from "axios";
-import {AppComponent} from "../../app.component";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserLoginAction, UserLogoutAction} from "../../store/user.action";
 import {UserState} from "../../store/user.reducer";

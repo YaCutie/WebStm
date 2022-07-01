@@ -1,7 +1,6 @@
 import {Component, Inject, Input, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import axios from "axios";
-import {Service} from "../../model/service";
 import {Appointment} from "../../model/appointment";
 
 @Component({

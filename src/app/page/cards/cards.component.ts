@@ -9,12 +9,6 @@ import {ServiceDialogComponent} from "./service-dialog/service-dialog.component"
 import {ScheduleDialogComponent} from "./schedule-dialog/schedule-dialog.component";
 import {Schedule} from "../../model/schedule";
 import {NewapplicationDialogComponent} from "./newapplication-dialog/newapplication-dialog.component";
-import {Observable} from "rxjs";
-import {select, Store} from "@ngrx/store";
-import {userSelector} from "../../store/user.selector";
-import {UserState} from "../../store/user.reducer";
-import {UserSyncStorageService} from "../../service/user-sync-storage.service";
-import {consolidateMessages} from "@angular/localize/tools/src/extract/translation_files/utils";
 import {Appointment} from "../../model/appointment";
 
 @Component({

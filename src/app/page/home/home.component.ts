@@ -1,10 +1,5 @@
 import {Component, Inject, Input, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {select, Store} from "@ngrx/store";
-import {UserState} from "../../store/user.reducer";
-import {Observable} from "rxjs";
-import {userSelector} from "../../store/user.selector";
-import {UserSyncStorageService} from "../../service/user-sync-storage.service";
 
 @Component({
   selector: 'app-home',

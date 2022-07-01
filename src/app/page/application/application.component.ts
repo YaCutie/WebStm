@@ -1,7 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {STEPPER_GLOBAL_OPTIONS} from "@angular/cdk/stepper";
 import {FormBuilder, Validators} from "@angular/forms";
-import {Card} from "../../model/card";
 import axios from "axios";
 import {ActivatedRoute, Router} from "@angular/router";
 

@@ -3,14 +3,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {Schedule} from "../../../model/schedule";
 import {Card} from "../../../model/card";
 import {Client} from "../../../model/Client";
-
-import {select, Store} from "@ngrx/store";
-import {UserState} from "../../../store/user.reducer";
-import {Observable} from "rxjs";
-import {userSelector} from "../../../store/user.selector";
-import {UserSyncStorageService} from "../../../service/user-sync-storage.service";
 import axios from "axios";
-import {ScheduleDialogComponent} from "../schedule-dialog/schedule-dialog.component";
 import {Service} from "../../../model/service";
 import {MatInput} from "@angular/material/input";
 import {FormControl, Validators} from "@angular/forms";

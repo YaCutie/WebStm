@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "postbuild": "gulp compress"
   },
   "private": true,
   "dependencies": {
@@ -40,6 +41,7 @@
     "@angular/localize": "^13.3.5",
     "@types/jasmine": "~3.10.0",
     "@types/node": "^12.11.1",
+    "gulp-gzip": "^1.4.2",
     "gulp-shell": "^0.8.0",
     "gulp-uglify": "^3.0.2",
     "jasmine-core": "~4.0.0",

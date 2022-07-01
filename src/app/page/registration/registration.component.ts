@@ -3,7 +3,6 @@ import axios from "axios";
 import {ActivatedRoute, Router} from "@angular/router";
 import {DateAdapter, MAT_DATE_LOCALE} from "@angular/material/core";
 import {UserSyncStorageService} from "../../service/user-sync-storage.service";
-// import 'moment/locale/en';
 
 
 @Component({
