@@ -172,7 +172,7 @@ export class NewapplicationDialogComponent implements OnInit {
             + "\n Клиника: " + this.data.card.clinicid.clinicName + "\n Врач: " + this.data.card.surname + " " + this.data.card.name.substring(0, 1)
             + "." + this.data.card.middlename.substring(0, 1) + "." + "\n Статус: Новая");
           this.dialogRef.close();
-          //location.reload();
+          location.reload();
         }
         else {
           alert("Ошибка!");
