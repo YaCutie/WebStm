@@ -16,7 +16,6 @@ export class ScheduleDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.data);
   }
 
   getWeekDay(date:any) {

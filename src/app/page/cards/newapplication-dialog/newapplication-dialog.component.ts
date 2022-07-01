@@ -47,9 +47,6 @@ export class NewapplicationDialogComponent implements OnInit {
   public data: {card: Card, services:Service[], schedules: Schedule[], client: Client, token: String}) {}
 
   async ngOnInit() {
-    console.log(this.data.services);
-    console.log(this.data.schedules);
-    console.log(this.data.client);
   }
   resetForm() {
     this.fromInput.value = '';
@@ -114,26 +111,6 @@ export class NewapplicationDialogComponent implements OnInit {
   }
 
   async SendEmail(text: string){
-    // const headers = {
-    //   "Content-Type": "application/json",
-    //   "x-mock-match-request-body": "true",
-    //   'Authorization': 'Bearer ' + this.data.token,
-    // };
-    // const data = {
-    //   email: this.data.client.email,
-    //   date: this.DateApp,
-    //   time: this.selected,
-    //   clinic: this.data.card.clinicid.clinicName,
-    //   person: this.data.card.surname + " " + this.data.card.name.substring(0, 1) + "." + this.data.card.middlename.substring(0, 1) + ".",
-    //   status: "Новая"
-    // }
-    // const config = {
-    //   url: "http://localhost:8080/user/sendemail",
-    // };
-    // await axios.post(config.url, data, {headers}).then((response) => {
-    //     console.log(response.data);
-    //   }
-    // )
 
     var element = document.createElement('a');
     element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
@@ -165,7 +142,6 @@ export class NewapplicationDialogComponent implements OnInit {
       url: "http://localhost:8080/user/newappoitment",
     };
     await axios.post(config.url, data, {headers}).then((response) => {
-        console.log(response.data);
         if (response.data){
           alert("Ваша заявка зарегистрирована");
           this.SendEmail("Ваша заявка находится в рассмотрении" + "\n Дата: " + this.DateApp + "\n Время: " + this.selected

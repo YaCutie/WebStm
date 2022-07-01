@@ -44,8 +44,6 @@ export class CardsComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.token)
-    console.log(this.userid)
 
     this.LoadCards();
     this.FindAppointment();
@@ -64,7 +62,6 @@ export class CardsComponent implements OnInit {
         this.cards = response.data;
         this.cardLength = this.cards.length;
         this.pagedList = this.cards.slice(0, this.pageSize)
-        console.log(this.cards);
       }
     )
   }
@@ -143,17 +140,14 @@ export class CardsComponent implements OnInit {
     };
     await axios.post(config.url, {id: this.userid}, { headers }).then((response) => {
         this.client = response.data.рўlient;
-        console.log(this.client)
         let age = this.getAge(this.client.dateOfBirth[0] + "-" + this.client.dateOfBirth[1] + "-" + this.client.dateOfBirth[2])
 
         if (age <= 14 && this.cards[cardid].specializationid.id == 1) {
-          console.log("Го малышь");
           this.dialog.open(NewapplicationDialogComponent, {
             data: {card: this.cards[cardid], services: this.services, schedules: this.schedules, client: this.client, token: this.token}
           });
         }
         else if (age >= 14 && this.cards[cardid].specializationid.id == 2) {
-          console.log("Го большой");
           this.dialog.open(NewapplicationDialogComponent, {
             data: {card: this.cards[cardid], services: this.services, schedules: this.schedules, client: this.client, token: this.token}
           });

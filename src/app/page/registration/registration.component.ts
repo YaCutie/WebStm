@@ -86,7 +86,6 @@ export class RegistrationComponent implements OnInit {
     axios
       .post(config.url, data, { headers })
       .then((response) => {
-        console.log(response.data);
         if (response.data.verification) {
           this.validToken = response.data.token;
           alert("Регистрация прошла успешно!");
@@ -100,6 +99,5 @@ export class RegistrationComponent implements OnInit {
         console.log(error);
         alert("Ошибка!");
       });
-    console.log(this.bol)
   }
 }

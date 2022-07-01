@@ -68,17 +68,14 @@ export class LoginComponent implements OnInit {
       "Content-Type": "application/json",
       "x-mock-match-request-body": "true",
     };
-    console.log(this.login, this.password)
     axios
       .post(config.url, data, { headers })
       .then((response) => {
-        console.log(response.data);
         if (response.data.verification) {
           this.token = response.data.token;
           alert("Вход прошёл успешно!");
           this.bol = false;
           this.id = response.data.id;
-          console.log(response.data.id);
           this.onLogin();
           this.routing.navigate(['clientpage'])
         } else {
@@ -89,6 +86,5 @@ export class LoginComponent implements OnInit {
         console.log(error);
         alert("Неверный логин или пароль!");
       });
-    console.log(this.bol)
   }
 }

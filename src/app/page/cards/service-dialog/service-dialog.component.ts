@@ -17,7 +17,6 @@ export class ServiceDialogComponent {
   }
 
   ngOnInit(): void {
-    console.log(this.data);
   }
 
 }
