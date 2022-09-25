@@ -53,6 +53,7 @@ export class CardsComponent implements OnInit {
       url: "http://localhost:8080/personal/findall",
     };
     await axios.get(config.url, {headers}).then((response) => {
+
         this.cards = response.data;
         this.cardLength = this.cards.length;
         this.pagedList = this.cards.slice(0, this.pageSize)
@@ -136,12 +137,12 @@ export class CardsComponent implements OnInit {
         this.client = response.data.рўlient;
         let age = this.getAge(this.client.dateOfBirth[0] + "-" + this.client.dateOfBirth[1] + "-" + this.client.dateOfBirth[2])
 
-        if (age <= 14 && this.cards[cardid].specializationid.id == 1) {
+        if (age <= 14 && this.cards[cardid].specializationId.id == 1) {
           this.dialog.open(NewapplicationDialogComponent, {
             data: {card: this.cards[cardid], services: this.services, schedules: this.schedules, client: this.client, token: this.token}
           });
         }
-        else if (age >= 14 && this.cards[cardid].specializationid.id == 2) {
+        else if (age >= 14 && this.cards[cardid].specializationId.id == 2) {
           this.dialog.open(NewapplicationDialogComponent, {
             data: {card: this.cards[cardid], services: this.services, schedules: this.schedules, client: this.client, token: this.token}
           });

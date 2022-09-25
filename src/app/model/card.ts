@@ -6,9 +6,9 @@ export class Card {
   postid: { postName: string; } = {
     postName: '',
   };
-  specializationid: { specializationname: string; id:number } = {
+  specializationId: { specializationName: string; id:number } = {
     id:0,
-    specializationname: '',
+    specializationName: '',
   };
   clinicid: {id:number, clinicName: string; address: string; } = {
     id: 0,

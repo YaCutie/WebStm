@@ -86,7 +86,7 @@ export class RegistrationComponent implements OnInit {
       .post(config.url, data, { headers })
       .then((response) => {
         if (response.data.verification) {
-          this.validToken = response.data.token;
+          // this.validToken = response.data.token;
           alert("Регистрация прошла успешно!");
           this.bol = false;
           this.routing.navigate(['login'])

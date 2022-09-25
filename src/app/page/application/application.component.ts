@@ -49,7 +49,6 @@ export class ApplicationComponent implements OnInit {
     }
     await axios.post(config.url, data).then((response) => {
         this.card = response.data;
-        console.log(this.card);
       }
     )
   }

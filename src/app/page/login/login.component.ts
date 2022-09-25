@@ -71,7 +71,7 @@ export class LoginComponent implements OnInit {
       .post(config.url, data, { headers })
       .then((response) => {
         if (response.data.verification) {
-          this.token = response.data.token;
+          // this.token = response.data.token;
           alert("Вход прошёл успешно!");
           this.bol = false;
           this.id = response.data.id;

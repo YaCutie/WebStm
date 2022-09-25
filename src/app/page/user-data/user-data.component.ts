@@ -45,7 +45,6 @@ export class UserDataComponent implements OnInit {
     await axios.post(config1.url, {id: this.userid}, {headers}).then((response) => {
         this.data = response.data;
         this.dataSource = this.data;
-        console.log(this.data)
       }
     );
   }
@@ -55,12 +54,13 @@ export class UserDataComponent implements OnInit {
       "Content-Type": "application/json",
       "x-mock-match-request-body": "true",
       'Authorization': 'Bearer ' + this.token,
+      'Accept-Language': 'en-US,en;q=0.5'
     };
     const config1 = {
       url: "http://localhost:8080/user/find",
     };
     await axios.post(config1.url, {id: this.userid}, {headers}).then((response) => {
-        this.client = response.data.рўlient;
+        this.client = response.data.client;
         this.DoB = new Date(this.client.dateOfBirth[0] + "-" + this.client.dateOfBirth[1] + "-" + this.client.dateOfBirth[2]).toLocaleDateString()
       }
     );
@@ -71,12 +71,12 @@ export class UserDataComponent implements OnInit {
   }
 
   Date(receptionTime: any) {
-    let date = new Date(receptionTime * 1000).toLocaleDateString();
+    let date = new Date(receptionTime ).toLocaleDateString();
     return date;
   }
 
   Time(receptionTime: any) {
-    let date = new Date(receptionTime * 1000).toLocaleTimeString()  ;
+    let date = new Date(receptionTime).toLocaleTimeString()  ;
     return date;
   }
 }

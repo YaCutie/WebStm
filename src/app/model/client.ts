@@ -3,7 +3,7 @@ export class Client {
   surname: any;
   name: any;
   middlename: any;
-  dateOfBirth: Array<number> = [0, 0, 0];
+  dateOfBirth: any;
   phone: any;
   login: any;
   password: any;
