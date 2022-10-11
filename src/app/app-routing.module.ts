@@ -23,6 +23,7 @@ import {ScheduleDialogComponent} from "./page/cards/schedule-dialog/schedule-dia
 import {NewapplicationDialogComponent} from "./page/cards/newapplication-dialog/newapplication-dialog.component";
 import {MatRadioModule} from "@angular/material/radio";
 import {MatSelectModule} from "@angular/material/select";
+import {WebSocketComponent} from "./page/web-socket/web-socket.component";
 
 const routes: Routes = [
   {
@@ -56,6 +57,7 @@ const routes: Routes = [
     ServiceDialogComponent,
     ScheduleDialogComponent,
     NewapplicationDialogComponent,
+    WebSocketComponent,
   ],
   imports: [RouterModule.forRoot(routes), MatTabsModule, MaterialAppModule, FormsModule, CommonModule, MatFormFieldModule, MatDatepickerModule, MatGridListModule, MatCardModule, MatPaginatorModule, MatStepperModule, ReactiveFormsModule, MatTableModule, MatRadioModule, MatSelectModule],
   exports: [WidgetComponent]
